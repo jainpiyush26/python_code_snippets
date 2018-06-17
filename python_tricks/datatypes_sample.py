@@ -2,6 +2,12 @@ from collections import OrderedDict
 from collections import ChainMap
 from functools import wraps
 from types import MappingProxyType
+import array
+from collections import Counter
+from collections import deque
+from queue import Queue
+# this is only in > python3.6
+# from types import SimpleNameSpace
 
 dict_object = {"name": "test",
                "full_name": "datatype_sample_test",
@@ -55,6 +61,59 @@ def immutable_proxy_dicts():
     except TypeError:
         raise TypeError
 
+
+@function_name
+def array_types():
+    data = array.array('f')
+    data.append(10.0)
+    data.append(11.0)
+    print(data)
+    data.append(11)
+    print(data)
+    # data.append("Test")
+
+
+@function_name
+def counter_test():
+    inventory = Counter()
+    object_inventory = {"shots": 3, "seqs": 5}
+    inventory.update(object_inventory)
+
+    print(inventory)
+
+    object_inventory_updt = {"shots": 10, "reels": 2}
+
+    inventory.update(object_inventory_updt)
+
+    print(inventory)
+
+
+@function_name
+def queue_implementations():
+    dqueue_object = deque()
+    dqueue_object.extend(["test1", "test2", "test3"])
+    print(dqueue_object)
+    dqueue_object.popleft()
+    print(dqueue_object)
+
+    queue_object = Queue()
+    queue_object.put("eat")
+    queue_object.put("sleep")
+    queue_object.put("repeat")
+
+    print(queue_object.get())
+    print(queue_object.get())
+    print(queue_object.get())
+    queue_object.get_nowait()
+    print(queue_object.get())
+    print(queue_object)
+
+
+
+
 # order_dict_test()
 # chainmap_test()
-immutable_proxy_dicts()
+# immutable_proxy_dicts()
+# array_types()
+# counter_test()
+queue_implementations()
